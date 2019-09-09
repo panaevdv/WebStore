@@ -65,6 +65,14 @@ namespace WebStore.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name ="Имя")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name ="Фамилия")]
+        public string LastName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -79,6 +87,26 @@ namespace WebStore.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+
+        [Required]
+        [Display(Name = "Страна")]
+        public string Country { get; set; }
+
+        [Required]
+        [Display(Name = "Город")]
+        public string City { get; set; }
+
+        [Required]
+        [Display(Name = "Улица")]
+        public string Street { get; set; }
+
+        [Required]
+        [Display(Name ="Дом")]
+        public int House { get; set; }
+
+        [Display(Name ="Строение")]
+        public string Building { get; set; }
     }
 
     public class ResetPasswordViewModel
