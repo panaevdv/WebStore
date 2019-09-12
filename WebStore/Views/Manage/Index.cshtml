@@ -1,6 +1,6 @@
 ﻿@model WebStore.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "My Profile";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -9,37 +9,6 @@
 <div>
     <h4>Change your account settings</h4>
     <hr />
-<<<<<<< Updated upstream
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-        <dt>External Logins:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Manage", "ManageLogins") ]
-        </dd>
-        @*
-            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-             
-             See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-             
-             Uncomment the following block after you have set up two-factor authentication
-        *@
-        @*  
-            <dt>Phone Number:</dt>
-=======
     @using (Html.BeginForm("Index", "Manage", FormMethod.Post))
     {
         <dl class="dl-horizontal">
@@ -58,7 +27,6 @@
             <dt>Building</dt>
             <dd>@Html.TextBoxFor(m => Model.User.Building, new { @disabled = "disabled", @class = "personal" })</dd>
             <dt>Password:</dt>
->>>>>>> Stashed changes
             <dd>
                 [
                 @if (Model.HasPassword)
@@ -71,18 +39,6 @@
                 }
                 ]
             </dd>
-<<<<<<< Updated upstream
-        *@
-        <dt>Two-Factor Authentication:</dt>
-        <dd>
-            <p>
-                There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication.
-            </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-=======
             <dt>External Logins:</dt>
             <dd>
                 @Model.Logins.Count [
@@ -101,7 +57,6 @@
                 <dd>
                     @(Model.PhoneNumber ?? "None")
                     @if (Model.PhoneNumber != null)
->>>>>>> Stashed changes
                     {
                         <br />
                         <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
@@ -154,8 +109,6 @@
     @*<button id="submitbt" disabled="disabled" type="submit">Сохранить</button>
         <button onclick="change()">Редактировать</button>*@
 </div>
-<<<<<<< Updated upstream
-=======
 
 <script>
     function change() {
@@ -169,4 +122,3 @@
         b.disabled = false;
     }
 </script>
->>>>>>> Stashed changes

@@ -87,6 +87,7 @@ namespace WebStore.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.ChangePersonalSuccess ? "Your personal information has been changed."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -96,12 +97,8 @@ namespace WebStore.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-<<<<<<< Updated upstream
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-=======
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
                 User = await UserManager.FindByIdAsync(userId)
->>>>>>> Stashed changes
             };
             return View(model);
         }
