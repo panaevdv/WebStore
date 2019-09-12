@@ -51,6 +51,32 @@ namespace WebStore.Controllers
         }
 
         //
+        // POST: /Manage/Index
+        [HttpPost]
+        public async Task<ActionResult> Index(IndexViewModel model)
+        {
+            ManageMessageId? message;
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                user.FirstName = model.User.FirstName;
+                user.LastName = model.User.LastName;
+                user.City = model.User.City;
+                user.Country = model.User.Country;
+                user.Street = model.User.Street;
+                user.House = model.User.House;
+                user.Building = model.User.Building;
+                await UserManager.UpdateAsync(user);
+                message = ManageMessageId.ChangePersonalSuccess;
+            }
+            else
+            {
+                message = ManageMessageId.Error;
+            }
+            return RedirectToAction("Index", new { Message = message });
+        }
+
+        //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
@@ -70,7 +96,12 @@ namespace WebStore.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
+<<<<<<< Updated upstream
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+=======
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                User = await UserManager.FindByIdAsync(userId)
+>>>>>>> Stashed changes
             };
             return View(model);
         }
@@ -381,6 +412,7 @@ namespace WebStore.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
+            ChangePersonalSuccess,
             Error
         }
 
