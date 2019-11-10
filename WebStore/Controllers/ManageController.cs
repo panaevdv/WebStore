@@ -53,6 +53,7 @@ namespace WebStore.Controllers
         //
         // POST: /Manage/Index
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(IndexViewModel model)
         {
             ManageMessageId? message;
