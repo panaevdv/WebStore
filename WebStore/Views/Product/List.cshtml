@@ -1,0 +1,25 @@
+﻿@using WebStore.Models
+@model IEnumerable<ProductModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Product</title>
+</head>
+<body>
+    <div> 
+        @foreach(ProductModel product in Model)
+        {
+            <h3>@product.Name</h3>
+            @product.Description
+            <h4>@product.Category</h4>
+            <h4>@product.Price.ToString("c")</h4>
+        }
+    </div>
+</body>
+</html>

@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -170,6 +173,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,6 +188,18 @@
     <Compile Include="Migrations\201911071951087_UserPhoto1.cs" />
     <Compile Include="Migrations\201911071951087_UserPhoto1.Designer.cs">
       <DependentUpon>201911071951087_UserPhoto1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911101426079_Products.cs" />
+    <Compile Include="Migrations\201911101426079_Products.Designer.cs">
+      <DependentUpon>201911101426079_Products.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911101513055_Products1.cs" />
+    <Compile Include="Migrations\201911101513055_Products1.Designer.cs">
+      <DependentUpon>201911101513055_Products1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911101514476_Products2.cs" />
+    <Compile Include="Migrations\201911101514476_Products2.Designer.cs">
+      <DependentUpon>201911101514476_Products2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -250,6 +266,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Product\List.cshtml" />
+    <Content Include="Views\Product\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -276,6 +294,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911071951087_UserPhoto1.resx">
       <DependentUpon>201911071951087_UserPhoto1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911101426079_Products.resx">
+      <DependentUpon>201911101426079_Products.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911101513055_Products1.resx">
+      <DependentUpon>201911101513055_Products1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911101514476_Products2.resx">
+      <DependentUpon>201911101514476_Products2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

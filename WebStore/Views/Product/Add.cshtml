@@ -1,0 +1,28 @@
+﻿@using WebStore.Models
+@model ProductViewModel
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+@using (Html.BeginForm("Add", "Product", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    <dl class="dl-horizontal">
+        <dt>Name</dt>
+        <dd>@Html.TextBoxFor(m => Model.Name)</dd>
+        <dt>Description</dt>
+        <dd>@Html.TextBoxFor(m => Model.Description)</dd>
+        <dt>Price</dt>
+        <dd>@Html.TextBoxFor(m => Model.Price)</dd>
+        <dt>Category</dt>
+        <dd>@Html.TextBoxFor(m => Model.Category)</dd>
+        <dt>SubCategory</dt>
+        <dd>@Html.TextBoxFor(m => Model.Subcategory)</dd>
+    </dl>
+    <div class="text-center">
+        <input type="submit" value="Добавить" class="btn-center btn-success" />
+        <a href="@Url.Action("Index","Home")"><input type="button" value="На главную" class="btn-center btn-danger" /></a>
+    </div>
+}
