@@ -14,10 +14,12 @@ namespace WebStore.Controllers
         // GET: Product
         public ViewResult List(int page = 1)
         {
-            ProductModel product = new ProductModel() { Name = "Памперсы", Description = "Памерсы для детей", Price = 15.60, Category="Медицина" };
             using (ProductContext db = new ProductContext())
             {
-                return View(db.Products.ToList());
+                return View(db.Products.ToList()
+                    .OrderBy(p=>p.ProductId)
+                    .Skip((page-1)*PageSize)
+                    .Take(PageSize));
             }
         }
 

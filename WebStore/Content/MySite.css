@@ -1,0 +1,10 @@
+﻿.body-content-product {
+    padding: 100px;
+    width = 600px;
+    height = 900px;
+}
+
+.product-item {
+    display: inline-block;
+    padding: 50px;
+}
