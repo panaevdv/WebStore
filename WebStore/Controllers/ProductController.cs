@@ -16,15 +16,15 @@ namespace WebStore.Controllers
         {
             using (ProductContext db = new ProductContext())
             {
-                return View(db.Products.ToList()
-                    .OrderBy(p=>p.ProductId)
-                    .Skip((page-1)*PageSize)
-                    .Take(PageSize));
+                var results = db.Products.ToList()
+                    .OrderBy(p => p.ProductId)
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize);
+                return View(results);
             }
         }
-
         [HttpPost]
-        public ActionResult Add(ProductViewModel m)
+        public ActionResult Add(ProductViewModel m, HttpPostedFileBase Photo)
         {
             if(ModelState.IsValid)
             {
@@ -35,6 +35,17 @@ namespace WebStore.Controllers
                 });
                 IMapper mapper = config.CreateMapper();
                 var item = mapper.Map<ProductViewModel, ProductModel>(m);
+
+
+                ProductPhoto productPhoto;
+                // Processing input photo file to add to DB
+                if(Photo!=null&&Photo.ContentLength!=0)
+                {
+                    productPhoto = new ProductPhoto();
+                    productPhoto.Photo = new byte[Photo.ContentLength];
+                    Photo.InputStream.Read(productPhoto.Photo, 0, Photo.ContentLength);
+                    item.Photo = productPhoto;
+                }
 
                 // Saving Product in DB
                 using(ProductContext db = new ProductContext())

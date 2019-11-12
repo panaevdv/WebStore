@@ -177,29 +177,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201909091051549_registration.cs" />
-    <Compile Include="Migrations\201909091051549_registration.Designer.cs">
-      <DependentUpon>201909091051549_registration.cs</DependentUpon>
+    <Compile Include="Migrations\201911120736051_myMigr.cs" />
+    <Compile Include="Migrations\201911120736051_myMigr.Designer.cs">
+      <DependentUpon>201911120736051_myMigr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911071943502_UserPhoto.cs" />
-    <Compile Include="Migrations\201911071943502_UserPhoto.Designer.cs">
-      <DependentUpon>201911071943502_UserPhoto.cs</DependentUpon>
+    <Compile Include="Migrations\201911120749004_First.cs" />
+    <Compile Include="Migrations\201911120749004_First.Designer.cs">
+      <DependentUpon>201911120749004_First.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911071951087_UserPhoto1.cs" />
-    <Compile Include="Migrations\201911071951087_UserPhoto1.Designer.cs">
-      <DependentUpon>201911071951087_UserPhoto1.cs</DependentUpon>
+    <Compile Include="Migrations\201911120749385_Launch.cs" />
+    <Compile Include="Migrations\201911120749385_Launch.Designer.cs">
+      <DependentUpon>201911120749385_Launch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911101426079_Products.cs" />
-    <Compile Include="Migrations\201911101426079_Products.Designer.cs">
-      <DependentUpon>201911101426079_Products.cs</DependentUpon>
+    <Compile Include="Migrations\201911120750280_Launch2.cs" />
+    <Compile Include="Migrations\201911120750280_Launch2.Designer.cs">
+      <DependentUpon>201911120750280_Launch2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911101513055_Products1.cs" />
-    <Compile Include="Migrations\201911101513055_Products1.Designer.cs">
-      <DependentUpon>201911101513055_Products1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911101514476_Products2.cs" />
-    <Compile Include="Migrations\201911101514476_Products2.Designer.cs">
-      <DependentUpon>201911101514476_Products2.cs</DependentUpon>
+    <Compile Include="Migrations\201911120907119_PhotoMigr.cs" />
+    <Compile Include="Migrations\201911120907119_PhotoMigr.Designer.cs">
+      <DependentUpon>201911120907119_PhotoMigr.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -287,23 +283,20 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909091051549_registration.resx">
-      <DependentUpon>201909091051549_registration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911120736051_myMigr.resx">
+      <DependentUpon>201911120736051_myMigr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911071943502_UserPhoto.resx">
-      <DependentUpon>201911071943502_UserPhoto.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911120749004_First.resx">
+      <DependentUpon>201911120749004_First.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911071951087_UserPhoto1.resx">
-      <DependentUpon>201911071951087_UserPhoto1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911120749385_Launch.resx">
+      <DependentUpon>201911120749385_Launch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911101426079_Products.resx">
-      <DependentUpon>201911101426079_Products.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911120750280_Launch2.resx">
+      <DependentUpon>201911120750280_Launch2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911101513055_Products1.resx">
-      <DependentUpon>201911101513055_Products1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911101514476_Products2.resx">
-      <DependentUpon>201911101514476_Products2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911120907119_PhotoMigr.resx">
+      <DependentUpon>201911120907119_PhotoMigr.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

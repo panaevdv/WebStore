@@ -5,8 +5,7 @@
 }
 
 <h2>Add</h2>
-
-@using (Html.BeginForm("Add", "Product", FormMethod.Post))
+@using (Html.BeginForm("Add", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary()
     <dl class="dl-horizontal">
@@ -20,6 +19,8 @@
         <dd>@Html.TextBoxFor(m => Model.Category)</dd>
         <dt>SubCategory</dt>
         <dd>@Html.TextBoxFor(m => Model.Subcategory)</dd>
+        <dt>Product image</dt>
+        <dd><input type="file" name="Photo" /></dd>
     </dl>
     <div class="text-center">
         <input type="submit" value="Добавить" class="btn-center btn-success" />

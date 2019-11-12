@@ -77,12 +77,17 @@ namespace WebStore.Models
         public string Subcategory { get; set; }
         [Required]
         public double Price { get; set; }
+        public virtual ProductPhoto Photo { get; set; }
+        
     }
 
     public class ProductPhoto
     {
-        public string ProductId {get; set;}
+        [Key]
+        [ForeignKey("Product")]
+        public int ProductId { get; set;}
         public byte[] Photo { get; set; }
+        public virtual ProductModel Product { get; set; }
     }
 
 
@@ -98,6 +103,7 @@ namespace WebStore.Models
             Database.SetInitializer<ProductContext>(null);
             // more code here.
         }
+        public DbSet<ProductPhoto> Photos { get; set; }
         public DbSet<ProductModel> Products { get; set; }
     }
 }
