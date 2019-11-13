@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,6 +12,7 @@ namespace WebStore.Controllers
     public class ProductController : Controller
     {
         public int PageSize = 9;
+        byte[] defaultPhoto;
         // GET: Product
         public FileContentResult Image(int id)
         {
@@ -47,17 +49,26 @@ namespace WebStore.Controllers
                 var item = mapper.Map<ProductViewModel, ProductModel>(m);
 
 
-                ProductPhoto productPhoto;
+                ProductPhoto productPhoto = new ProductPhoto();
                 // Processing input photo file to add to DB
                 if (Photo != null && Photo.ContentLength != 0)
                 {
-                    productPhoto = new ProductPhoto();
                     productPhoto.MimeType = Photo.ContentType;
                     productPhoto.Photo = new byte[Photo.ContentLength];
                     Photo.InputStream.Read(productPhoto.Photo, 0, Photo.ContentLength);
-                    item.Photo = productPhoto;
                 }
-
+                // If there were no uploaded photo, we'll use default photo
+                else
+                {
+                    if (defaultPhoto == null)
+                    {
+                        string defaultProductPhotoPath = Path.Combine(HttpRuntime.AppDomainAppPath, "Content\\Images\\DefaultProductPhoto.png");
+                        defaultPhoto = System.IO.File.ReadAllBytes(defaultProductPhotoPath);
+                    }
+                    productPhoto.Photo = defaultPhoto;
+                    productPhoto.MimeType = "image/png";
+                }
+                item.Photo = productPhoto;
                 // Saving Product in DB
                 using (ProductContext db = new ProductContext())
                 {

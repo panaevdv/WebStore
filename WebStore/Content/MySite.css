@@ -1,4 +1,9 @@
-﻿.body-content-product {
+﻿img{
+    max-height:50%;
+    max-width:100%;
+}
+
+.body-content-product {
     margin: 100px;
     width: 940px;
     height: 900px;
@@ -6,8 +11,8 @@
 
 .product-item {
     vertical-align: top;
+    height: 300px;
     width: 300px;
     border: 1px solid black;
     display: inline-block;
-    padding: 50px;
 }

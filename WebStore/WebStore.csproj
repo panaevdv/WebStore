@@ -177,29 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911120736051_myMigr.cs" />
-    <Compile Include="Migrations\201911120736051_myMigr.Designer.cs">
-      <DependentUpon>201911120736051_myMigr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911120749004_First.cs" />
-    <Compile Include="Migrations\201911120749004_First.Designer.cs">
-      <DependentUpon>201911120749004_First.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911120749385_Launch.cs" />
-    <Compile Include="Migrations\201911120749385_Launch.Designer.cs">
-      <DependentUpon>201911120749385_Launch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911120750280_Launch2.cs" />
-    <Compile Include="Migrations\201911120750280_Launch2.Designer.cs">
-      <DependentUpon>201911120750280_Launch2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911120907119_PhotoMigr.cs" />
-    <Compile Include="Migrations\201911120907119_PhotoMigr.Designer.cs">
-      <DependentUpon>201911120907119_PhotoMigr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911131135367_MimeType.cs" />
-    <Compile Include="Migrations\201911131135367_MimeType.Designer.cs">
-      <DependentUpon>201911131135367_MimeType.cs</DependentUpon>
+    <Compile Include="Migrations\201911131746569_MyMigration.cs" />
+    <Compile Include="Migrations\201911131746569_MyMigration.Designer.cs">
+      <DependentUpon>201911131746569_MyMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -287,23 +267,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911120736051_myMigr.resx">
-      <DependentUpon>201911120736051_myMigr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911120749004_First.resx">
-      <DependentUpon>201911120749004_First.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911120749385_Launch.resx">
-      <DependentUpon>201911120749385_Launch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911120750280_Launch2.resx">
-      <DependentUpon>201911120750280_Launch2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911120907119_PhotoMigr.resx">
-      <DependentUpon>201911120907119_PhotoMigr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911131135367_MimeType.resx">
-      <DependentUpon>201911131135367_MimeType.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911131746569_MyMigration.resx">
+      <DependentUpon>201911131746569_MyMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
