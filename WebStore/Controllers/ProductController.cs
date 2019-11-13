@@ -18,8 +18,25 @@ namespace WebStore.Controllers
         {
             using (ProductContext db = new ProductContext())
             {
-                var photo = db.Photos.Find(id);
-                return File(photo.Photo, photo.MimeType);
+                var productPhoto = db.Photos.Find(id);
+                byte[] image;
+                string mime = "image/png";
+                // if there is no photo of product, return default photo
+                if (productPhoto.Photo == null)
+                {
+                    if (defaultPhoto == null)
+                    {
+                        string defaultProductPhotoPath = Path.Combine(HttpRuntime.AppDomainAppPath, "Content\\Images\\DefaultProductPhoto.png");
+                        defaultPhoto = System.IO.File.ReadAllBytes(defaultProductPhotoPath);
+                    }
+                    image = defaultPhoto;
+                }
+                else
+                {
+                    image = productPhoto.Photo;
+                    mime = productPhoto.MimeType;
+                }
+                return File(image, mime);
             }
         }
         // Displays list of elements
@@ -56,17 +73,6 @@ namespace WebStore.Controllers
                     productPhoto.MimeType = Photo.ContentType;
                     productPhoto.Photo = new byte[Photo.ContentLength];
                     Photo.InputStream.Read(productPhoto.Photo, 0, Photo.ContentLength);
-                }
-                // If there were no uploaded photo, we'll use default photo
-                else
-                {
-                    if (defaultPhoto == null)
-                    {
-                        string defaultProductPhotoPath = Path.Combine(HttpRuntime.AppDomainAppPath, "Content\\Images\\DefaultProductPhoto.png");
-                        defaultPhoto = System.IO.File.ReadAllBytes(defaultProductPhotoPath);
-                    }
-                    productPhoto.Photo = defaultPhoto;
-                    productPhoto.MimeType = "image/png";
                 }
                 item.Photo = productPhoto;
                 // Saving Product in DB
