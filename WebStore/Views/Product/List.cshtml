@@ -21,6 +21,7 @@
                 @product.Description
                 <h4>@product.Category</h4>
                 <h4>@product.Price.ToString("c")</h4>
+                <img src="@Url.Action("Image","Product", new { id=product.ProductId})" width="300" height="150"/>
             </div>
         }
     </div>

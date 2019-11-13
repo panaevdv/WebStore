@@ -197,6 +197,10 @@
     <Compile Include="Migrations\201911120907119_PhotoMigr.Designer.cs">
       <DependentUpon>201911120907119_PhotoMigr.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911131135367_MimeType.cs" />
+    <Compile Include="Migrations\201911131135367_MimeType.Designer.cs">
+      <DependentUpon>201911131135367_MimeType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -297,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911120907119_PhotoMigr.resx">
       <DependentUpon>201911120907119_PhotoMigr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911131135367_MimeType.resx">
+      <DependentUpon>201911131135367_MimeType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

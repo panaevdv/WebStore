@@ -86,6 +86,7 @@ namespace WebStore.Models
         [Key]
         [ForeignKey("Product")]
         public int ProductId { get; set;}
+        public string MimeType { get; set; }
         public byte[] Photo { get; set; }
         public virtual ProductModel Product { get; set; }
     }
