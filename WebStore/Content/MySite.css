@@ -3,6 +3,18 @@
     max-width:100%;
 }
 
+.menuItem{
+
+}
+
+.hideMenuItem{
+    display: none;
+}
+
+.showMenuItem{
+    display:list-item;
+}
+
 .body-content-product {
     margin: 100px;
     width: 940px;

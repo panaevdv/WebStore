@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - WebStore</title>
     <script type="text/javascript" src="~/Scripts/hideMenu.js"></script>
+    @Styles.Render("~/Content/MySite.css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -26,9 +27,10 @@
                         <div class="dropdown">
                             <button onclick="dropDown()" class="dropbtn">Каталог</button>
                             <div id="myDropdown" class="dropdown-content">
-                                <a href="#">Link 1</a>
-                                <a href="#">Link 2</a>
-                                <a href="#">Link 3</a>
+                                <a href="@Url.Action("List","Product", new { category = "Электроника" })">Электроника</a>
+                                <a href="@Url.Action("List","Product", new { category = "Одежда" })">Одежда</a>
+                                <a href="@Url.Action("List","Product", new { category = "Книги" })">Книги</a>
+                                <a href="@Url.Action("List","Product", new { category = "Медицина" })">Медицина</a>
                             </div>
                         </div>
                     </li>
@@ -46,6 +48,7 @@
             <p>&copy; @DateTime.Now.Year - WebStore</p>
         </footer>
     </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

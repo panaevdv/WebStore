@@ -14,15 +14,22 @@
 </head>
 <body>
     <div align="center" class="body-content-product">
-        @foreach (ProductModel product in Model)
+        @if (Model.Count() > 0)
         {
-            <div class="product-item">
-                <img src="@Url.Action("Image","Product", new { id=product.ProductId})" />
-                <h3>@product.Name</h3>
-                @product.Description
-                <h4>@product.Category</h4>
-                <h4>@product.Price.ToString("c")</h4>
-            </div>
+            foreach (ProductModel product in Model)
+            {
+                <div class="product-item">
+                    <img src="@Url.Action("Image", "Product", new { id = product.ProductId })" />
+                    <h3>@product.Name</h3>
+                    @product.Description
+                    <h4>@product.Category</h4>
+                    <h4>@product.Price.ToString("c")</h4>
+                </div>
+            }
+        }
+        else
+        {
+            <h3>There are no products yet. Would you like to <a href="@Url.Action("Add","Product")">add</a> one?</h3>
         }
     </div>
 </body>

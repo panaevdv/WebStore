@@ -40,11 +40,11 @@ namespace WebStore.Controllers
             }
         }
         // Displays list of elements
-        public ViewResult List(int page = 1)
+        public ViewResult List(string category, int page = 1)
         {
             using (ProductContext db = new ProductContext())
             {
-                var results = db.Products.ToList()
+                var results = db.Products.ToList().Where(p=>p.Category==category)
                     .OrderBy(p => p.ProductId)
                     .Skip((page - 1) * PageSize)
                     .Take(PageSize);
