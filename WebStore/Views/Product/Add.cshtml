@@ -16,7 +16,7 @@
         <dt>Price</dt>
         <dd>@Html.TextBoxFor(m => Model.Price)</dd>
         <dt>Category</dt>
-        <dd>@Html.TextBoxFor(m => Model.Category)</dd>
+        <dd>@Html.DropDownListFor(m=>Model.Category,ViewBag.Categories as SelectList)</dd>
         <dt>SubCategory</dt>
         <dd>@Html.TextBoxFor(m => Model.Subcategory)</dd>
         <dt>Product image</dt>

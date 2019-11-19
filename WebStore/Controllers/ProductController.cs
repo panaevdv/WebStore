@@ -13,6 +13,7 @@ namespace WebStore.Controllers
     {
         public int PageSize = 9;
         byte[] defaultPhoto;
+        public List<string> Categories = new List<string>() { "Электроника","Одежда","Книги","Медицина"};
         // GET: Product
         public FileContentResult Image(int id)
         {
@@ -88,6 +89,7 @@ namespace WebStore.Controllers
         [HttpGet]
         public ActionResult Add()
         {
+            ViewBag.Categories = new SelectList(Categories);
             return View();
         }
     }
