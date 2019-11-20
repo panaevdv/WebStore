@@ -28,3 +28,32 @@
     border: 1px solid black;
     display: inline-block;
 }
+
+.body-content-get-product {
+    min-height: 600px;
+    margin: 100px;
+    margin-top: 75px;
+    position: relative;
+}
+
+.product-main-text {
+    margin-right: 200px;
+    float: left;
+}
+
+.product-main-info{
+    display: inline-block;
+    text-align:left;
+}
+
+.product-main-manage {
+    margin-top: -30px;
+    float: right;
+    vertical-align: top;
+}
+
+.product-image{
+    float:right;
+    max-height: 800px;
+    max-width: 400px;
+}

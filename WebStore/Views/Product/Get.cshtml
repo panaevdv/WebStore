@@ -1,0 +1,26 @@
+﻿@using WebStore.Models
+@model ProductModel
+@{
+    ViewBag.Title = @Model.Name;
+}
+
+<div>
+    <div align="center" class="body-content-get-product">
+        <div class="product-main-info product-main-manage">
+            <a href="@Url.Action("Edit","Product", new { id = Model.ProductId })"><input type="button" class="btn" value="Редактировать" /></a>
+            <a href="@Url.Action("Delete","Product", new { id = Model.ProductId })">
+                <input type="button" class="btn btn-danger" value="Удалить"
+                       onclick="return confirm(`Вы действительно хотите удалить этот продукт?`);" />
+            </a>
+        </div>
+        <div class="product-main-info product-main-text">
+            <h2>@Html.DisplayFor(m => Model.Name)</h2>
+            <h4>@Html.DisplayFor(m => Model.Category)</h4>
+            <h4>@Html.DisplayFor(m => Model.Description)</h4>
+            <h1>@Model.Price.ToString("c")</h1>
+        </div>
+        <div class="product-main-info product-image">
+            <img class="" src="@Url.Action("Image", "Product", new { id = Model.ProductId })" />
+        </div>
+    </div>
+</div>

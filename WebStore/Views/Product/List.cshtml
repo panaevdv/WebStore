@@ -20,7 +20,7 @@
             {
                 <div class="product-item">
                     <img src="@Url.Action("Image", "Product", new { id = product.ProductId })" />
-                    <h3>@product.Name</h3>
+                    <h3><a href="@Url.Action("Get","Product", new { id = product.ProductId})"> @product.Name </a></h3>
                     @product.Description
                     <h4>@product.Category</h4>
                     <h4>@product.Price.ToString("c")</h4>

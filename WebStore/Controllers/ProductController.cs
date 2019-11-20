@@ -14,7 +14,32 @@ namespace WebStore.Controllers
         public int PageSize = 9;
         byte[] defaultPhoto;
         public List<string> Categories = new List<string>() { "Электроника","Одежда","Книги","Медицина"};
-        // GET: Product
+
+
+        // Deletes product by id
+        public ActionResult Delete(int id)
+        {
+            using (ProductContext db = new ProductContext())
+            {
+                var product = db.Products.Find(id);
+                if (product.Photo != null)
+                    db.Photos.Remove(product.Photo);
+                db.Products.Remove(product);
+                db.SaveChanges();
+                return RedirectToAction("List","Product", new { category = product.Category});
+            }
+        }
+
+        // Returns product by id
+        public ViewResult Get(int id)
+        {
+            using(ProductContext db = new ProductContext())
+            {
+                var product = db.Products.Find(id);
+                return View(product);
+            }
+        }
+        // Returns product's image by id
         public FileContentResult Image(int id)
         {
             using (ProductContext db = new ProductContext())
@@ -40,7 +65,7 @@ namespace WebStore.Controllers
                 return File(image, mime);
             }
         }
-        // Displays list of elements
+        // Displays list of elements by category
         public ViewResult List(string category, int page = 1)
         {
             using (ProductContext db = new ProductContext())
