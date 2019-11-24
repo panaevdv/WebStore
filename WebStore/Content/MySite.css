@@ -3,22 +3,16 @@
     max-width:100%;
 }
 
-.menuItem{
-
-}
-
-.hideMenuItem{
-    display: none;
-}
-
-.showMenuItem{
-    display:list-item;
+.body-content-edit-product {
+    margin: 70px;
+    width: 940px;
+    height: 450px;
 }
 
 .body-content-product {
     margin: 70px;
     width: 940px;
-    height: 450px;
+    height: auto;
 }
 
 .product-item {
@@ -50,9 +44,6 @@
     vertical-align: top;
 }
 
-.product-edit-form-btn{
-}
-
 .product-edit-form-upload {
     margin-top:15px;
     float: right;
@@ -64,6 +55,13 @@
     max-height: 800px;
     max-width: 400px;
 }
+
+.product-get-manage{
+    margin-top: -50px;
+    vertical-align: top;
+    float:right;
+}
+
 footer {
     clear: both;
     position: relative;

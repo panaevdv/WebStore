@@ -6,7 +6,7 @@
 @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(m=>Model.ProductId)
-    <div class="body-content-product">
+    <div class="body-content-edit-product">
         @Html.ValidationSummary()
         <div>
             <div class="product-main-info product-main-text">
@@ -31,15 +31,13 @@
     </div>
     <div align="center" class="product-edit-form-btn">
         <button type="submit"  class="btn btn-success">Изменить</button>
-        <button id="backBtn" class="btn btn-danger">Вернуться к просмотру</button>
+        <button type="button" onclick="handler()" class="btn btn-danger">Вернуться к просмотру</button>
     </div>
 }
 
 
 <script>
-    var backBtn = document.getElementById('backBtn');
-    backBtn.addEventListener();
     function handler() {
-        window.location.href = 'Edit/Product';
+        window.location.href = '@Url.Action("Get", new { id = Model.ProductId })';
     }
 </script>

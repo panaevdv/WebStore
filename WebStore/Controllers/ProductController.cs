@@ -11,7 +11,7 @@ namespace WebStore.Controllers
 {
     public class ProductController : Controller
     {
-        public int PageSize = 9;
+        public int _PageSize = 6;
         byte[] defaultPhoto;
         public List<string> Categories = new List<string>() { "Электроника", "Одежда", "Книги", "Медицина" };
 
@@ -46,7 +46,7 @@ namespace WebStore.Controllers
 
 
                 // Processing input photo file to add to DB
-               
+
                 using (ProductContext db = new ProductContext())
                 {
                     if (UploadedPhoto != null && UploadedPhoto.ContentLength != 0)
@@ -124,12 +124,15 @@ namespace WebStore.Controllers
             using (ProductContext db = new ProductContext())
             {
                 ViewBag.CurrentCategory = category;
-                var results = db.Products
+                var products = db.Products
                     .Where(p => p.Category == category)
                     .OrderBy(p => p.ProductId)
-                    .Skip((page - 1) * PageSize)
-                    .Take(PageSize)
+                    .Skip((page - 1) * _PageSize)
+                    .Take(_PageSize)
                     .ToList();
+                var itemsCount = db.Products.Where(p => p.Category == category).Count();
+                PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = _PageSize, TotalItems =  itemsCount};
+                ProductListViewModel results = new ProductListViewModel { PageInfo = pageInfo, Products = products };
                 return View(results);
             }
         }

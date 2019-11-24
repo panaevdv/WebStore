@@ -177,6 +177,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\PagingHelpers.cs" />
     <Compile Include="Migrations\201911131746569_MyMigration.cs" />
     <Compile Include="Migrations\201911131746569_MyMigration.Designer.cs">
       <DependentUpon>201911131746569_MyMigration.cs</DependentUpon>

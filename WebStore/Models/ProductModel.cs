@@ -8,6 +8,22 @@ using System.Web;
 
 namespace WebStore.Models
 {
+    public class PageInfo
+    {
+        public int PageNumber { get; set; } 
+        public int PageSize { get; set; } 
+        public int TotalItems { get; set; } 
+        public int TotalPages 
+        {
+            get { return (int)Math.Ceiling((decimal)TotalItems / PageSize); }
+        }
+    }
+    public class ProductListViewModel
+    {
+        public PageInfo PageInfo { get; set; }
+        public IEnumerable<ProductModel> Products { get; set; }
+    }
+
     public class ProductViewModel
     {
         [Required]
