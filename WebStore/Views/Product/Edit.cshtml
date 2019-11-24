@@ -1,0 +1,45 @@
+﻿@using WebStore.Models
+@model ProductViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m=>Model.ProductId)
+    <div class="body-content-product">
+        @Html.ValidationSummary()
+        <div>
+            <div class="product-main-info product-main-text">
+                <dl class="dl-line">
+                    <dt>Name</dt>
+                    <dd>@Html.EditorFor(m => Model.Name)</dd>
+                    <dt>Description</dt>
+                    <dd>@Html.EditorFor(m => Model.Description)</dd>
+                    <dt>Price</dt>
+                    <dd>@Html.EditorFor(m => Model.Price)</dd>
+                    <dt>Category</dt>
+                    <dd>@Html.EditorFor(m => Model.Category, ViewBag.Categories as SelectList)</dd>
+                    <dt>SubCategory</dt>
+                    <dd>@Html.EditorFor(m => Model.Subcategory)</dd>
+                </dl>
+            </div>
+            <div class="product-main-info product-image">
+                <img src="@Url.Action("Image","Product", new { id = Model.ProductId})" />
+                <input class="product-edit-form-upload" type="file" name="UploadedPhoto" />
+            </div>
+        </div>
+    </div>
+    <div align="center" class="product-edit-form-btn">
+        <button type="submit"  class="btn btn-success">Изменить</button>
+        <button id="backBtn" class="btn btn-danger">Вернуться к просмотру</button>
+    </div>
+}
+
+
+<script>
+    var backBtn = document.getElementById('backBtn');
+    backBtn.addEventListener();
+    function handler() {
+        window.location.href = 'Edit/Product';
+    }
+</script>

@@ -29,7 +29,6 @@
             <dd>@Html.TextBoxFor(m => Model.User.Building, new { @disabled = "disabled", @class = "personal" })</dd>
             <dt>Password:</dt>
             <dd>
-                [
                 @if (Model.HasPassword)
                 {
                     @Html.ActionLink("Change your password", "ChangePassword")
@@ -38,7 +37,6 @@
                 {
                     @Html.ActionLink("Create", "SetPassword")
                 }
-                ]
             </dd>
             <dt>External Logins:</dt>
             <dd>

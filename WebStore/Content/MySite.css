@@ -16,9 +16,9 @@
 }
 
 .body-content-product {
-    margin: 100px;
+    margin: 70px;
     width: 940px;
-    height: 900px;
+    height: 450px;
 }
 
 .product-item {
@@ -30,20 +30,18 @@
 }
 
 .body-content-get-product {
-    min-height: 600px;
     margin: 100px;
     margin-top: 75px;
     position: relative;
 }
 
 .product-main-text {
-    margin-right: 200px;
     float: left;
+    text-align: left;
 }
 
 .product-main-info{
     display: inline-block;
-    text-align:left;
 }
 
 .product-main-manage {
@@ -52,8 +50,22 @@
     vertical-align: top;
 }
 
+.product-edit-form-btn{
+}
+
+.product-edit-form-upload {
+    margin-top:15px;
+    float: right;
+    vertical-align: top;
+}
+
 .product-image{
     float:right;
     max-height: 800px;
     max-width: 400px;
+}
+footer {
+    clear: both;
+    position: relative;
+    height: 200px;
 }

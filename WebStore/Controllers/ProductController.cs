@@ -13,9 +13,60 @@ namespace WebStore.Controllers
     {
         public int PageSize = 9;
         byte[] defaultPhoto;
-        public List<string> Categories = new List<string>() { "Электроника","Одежда","Книги","Медицина"};
+        public List<string> Categories = new List<string>() { "Электроника", "Одежда", "Книги", "Медицина" };
+
+        public ActionResult Edit(int id)
+        {
+            using (ProductContext db = new ProductContext())
+            {
+                var product = db.Products.Find(id);
+                // Mapping current ProductModel for ProductViewModel
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<ProductModel, ProductViewModel>();
+                });
+                IMapper mapper = config.CreateMapper();
+                var item = mapper.Map<ProductModel, ProductViewModel>(product);
+                return View(item);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ProductViewModel model, HttpPostedFileBase UploadedPhoto)
+        {
+            if (ModelState.IsValid)
+            {
+                // Mapping current ProductViewModel for ProductModel
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<ProductViewModel, ProductModel>();
+                });
+                IMapper mapper = config.CreateMapper();
+                var item = mapper.Map<ProductViewModel, ProductModel>(model);
 
 
+                // Processing input photo file to add to DB
+               
+                using (ProductContext db = new ProductContext())
+                {
+                    if (UploadedPhoto != null && UploadedPhoto.ContentLength != 0)
+                    {
+                        var oldPhoto = db.Photos.Find(item.ProductId);
+                        db.Photos.Remove(oldPhoto);
+                        ProductPhoto productPhoto = new ProductPhoto();
+                        productPhoto.MimeType = UploadedPhoto.ContentType;
+                        productPhoto.Photo = new byte[UploadedPhoto.ContentLength];
+                        UploadedPhoto.InputStream.Read(productPhoto.Photo, 0, UploadedPhoto.ContentLength);
+                        productPhoto.ProductId = item.ProductId;
+                        db.Photos.Add(productPhoto);
+                    }
+                    db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Get", "Product", new { id = item.ProductId });
+                }
+            }
+            return View(model);
+        }
         // Deletes product by id
         public ActionResult Delete(int id)
         {
@@ -26,14 +77,14 @@ namespace WebStore.Controllers
                     db.Photos.Remove(product.Photo);
                 db.Products.Remove(product);
                 db.SaveChanges();
-                return RedirectToAction("List","Product", new { category = product.Category});
+                return RedirectToAction("List", "Product", new { category = product.Category });
             }
         }
 
         // Returns product by id
         public ViewResult Get(int id)
         {
-            using(ProductContext db = new ProductContext())
+            using (ProductContext db = new ProductContext())
             {
                 var product = db.Products.Find(id);
                 return View(product);
@@ -66,14 +117,19 @@ namespace WebStore.Controllers
             }
         }
         // Displays list of elements by category
-        public ViewResult List(string category, int page = 1)
+        public ActionResult List(string category, int page = 1)
         {
+            if (!Categories.Contains(category))
+                return HttpNotFound();
             using (ProductContext db = new ProductContext())
             {
-                var results = db.Products.ToList().Where(p=>p.Category==category)
+                ViewBag.CurrentCategory = category;
+                var results = db.Products
+                    .Where(p => p.Category == category)
                     .OrderBy(p => p.ProductId)
                     .Skip((page - 1) * PageSize)
-                    .Take(PageSize);
+                    .Take(PageSize)
+                    .ToList();
                 return View(results);
             }
         }
@@ -107,7 +163,7 @@ namespace WebStore.Controllers
                     db.Products.Add(item);
                     db.SaveChanges();
                 }
-                return RedirectToAction("List");
+                return RedirectToAction("List", new { category = item.Category });
             }
             return View(m);
         }

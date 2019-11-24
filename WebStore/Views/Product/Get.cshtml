@@ -19,8 +19,8 @@
             <h4>@Html.DisplayFor(m => Model.Description)</h4>
             <h1>@Model.Price.ToString("c")</h1>
         </div>
-        <div class="product-main-info product-image">
-            <img class="" src="@Url.Action("Image", "Product", new { id = Model.ProductId })" />
+        <div >
+            <img class="product-image" src="@Url.Action("Image", "Product", new { id = Model.ProductId })" />
         </div>
     </div>
 </div>
