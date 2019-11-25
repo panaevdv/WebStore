@@ -123,7 +123,6 @@ namespace WebStore.Controllers
                 return HttpNotFound();
             using (ProductContext db = new ProductContext())
             {
-                ViewBag.CurrentCategory = category;
                 var products = db.Products
                     .Where(p => p.Category == category)
                     .OrderBy(p => p.ProductId)
@@ -131,7 +130,8 @@ namespace WebStore.Controllers
                     .Take(_PageSize)
                     .ToList();
                 var itemsCount = db.Products.Where(p => p.Category == category).Count();
-                PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = _PageSize, TotalItems =  itemsCount};
+                ViewBag.Categories = Categories;
+                PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = _PageSize, TotalItems =  itemsCount, CurrentCategory = category};
                 ProductListViewModel results = new ProductListViewModel { PageInfo = pageInfo, Products = products };
                 return View(results);
             }
