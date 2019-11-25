@@ -6,11 +6,13 @@
 
 <div>
     <div align="center" class="body-content-get-product">
+        <span class="product-main-manage-back product-main-manage">
+            <button class="btn btn-default" type="button" onclick="window.location.href='@Request.UrlReferrer'">Вернуться</button>
+        </span>
         <div class="product-main-info product-main-manage">
-            <a href="@Url.Action("Edit","Product", new { id = Model.ProductId })"><input type="button" class="btn" value="Редактировать" /></a>
-            <a href="@Url.Action("Delete","Product", new { id = Model.ProductId })">
-                <input type="button" class="btn btn-danger" value="Удалить"
-                       onclick="return confirm(`Вы действительно хотите удалить этот продукт?`);" />
+            <input type="button" class="btn" value="Редактировать" onclick="window.location.href='@Url.Action("Edit","Product", new { id = Model.ProductId })'" />
+            <input type="button" class="btn btn-danger" value="Удалить"
+                   onclick="if (confirm(`Вы действительно хотите удалить этот продукт?`)) window.location.href = '@Url.Action("Delete","Product", new { id = Model.ProductId })'" />
             </a>
         </div>
         <div class="product-main-info product-main-text">
@@ -19,7 +21,7 @@
             <h4>@Html.DisplayFor(m => Model.Description)</h4>
             <h1>@Model.Price.ToString("c")</h1>
         </div>
-        <div >
+        <div>
             <img class="product-image" src="@Url.Action("Image", "Product", new { id = Model.ProductId })" />
         </div>
     </div>

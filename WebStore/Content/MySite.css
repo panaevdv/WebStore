@@ -61,9 +61,13 @@
 }
 
 .product-main-manage {
-    margin-top: -30px;
+    margin-top: -40px;
     float: right;
     vertical-align: top;
+}
+
+.product-main-manage-back{
+    float:left;
 }
 
 .product-edit-form-upload {
