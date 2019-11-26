@@ -67,14 +67,14 @@
 }
 
 .product-edit-form-upload {
-    margin-top: 15px;
+    margin-top: 30px;
     float: right;
     vertical-align: top;
 }
 
 .product-image {
     float: right;
-    max-height: 800px;
+    max-height: 500px;
     max-width: 400px;
 }
 
@@ -82,6 +82,20 @@
     margin-top: -50px;
     vertical-align: top;
     float: right;
+}
+
+.product-image-preview{
+    margin-right: 250px;
+    display: inline-block;
+    max-width: 400px;
+}
+
+.check{
+    overflow:auto;
+}
+
+.product-accept-btn {
+    margin-top: 20px;
 }
 
 footer {

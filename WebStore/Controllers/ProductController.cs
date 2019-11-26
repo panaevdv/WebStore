@@ -33,7 +33,7 @@ namespace WebStore.Controllers
 
         [HttpPost]
         public ActionResult Edit(ProductViewModel model, HttpPostedFileBase UploadedPhoto)
-        {
+        {   
             if (ModelState.IsValid)
             {
                 // Mapping current ProductViewModel for ProductModel

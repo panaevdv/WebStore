@@ -8,22 +8,35 @@
 @using (Html.BeginForm("Add", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary()
-    <dl class="dl-horizontal">
-        <dt>Name</dt>
-        <dd>@Html.TextBoxFor(m => Model.Name)</dd>
-        <dt>Description</dt>
-        <dd>@Html.TextBoxFor(m => Model.Description)</dd>
-        <dt>Price</dt>
-        <dd>@Html.TextBoxFor(m => Model.Price)</dd>
-        <dt>Category</dt>
-        <dd>@Html.DropDownListFor(m=>Model.Category,ViewBag.Categories as SelectList)</dd>
-        <dt>SubCategory</dt>
-        <dd>@Html.TextBoxFor(m => Model.Subcategory)</dd>
-        <dt>Product image</dt>
-        <dd><input type="file" name="Photo" /></dd>
-    </dl>
-    <div class="text-center">
+    <div class="check">
+        <img class="product-image product-image-preview" id="output" />
+        <div class="product-main-info">
+            <dl class="dl-horizontal">
+                <dt>Name</dt>
+                <dd>@Html.TextBoxFor(m => Model.Name)</dd>
+                <dt>Description</dt>
+                <dd>@Html.TextBoxFor(m => Model.Description)</dd>
+                <dt>Price</dt>
+                <dd>@Html.TextBoxFor(m => Model.Price)</dd>
+                <dt>Category</dt>
+                <dd>@Html.DropDownListFor(m => Model.Category, ViewBag.Categories as SelectList)</dd>
+                <dt>SubCategory</dt>
+                <dd>@Html.TextBoxFor(m => Model.Subcategory)</dd>
+                <dt>Product image</dt>
+                <dd><input type="file" name="Photo" accept="image/*" onchange="loadFile(event)" /></dd>
+            </dl>
+        </div>
+    </div>
+    <div align="center" class="product-accept-btn">
         <input type="submit" value="Добавить" class="btn btn-success" />
         <a href="@Url.Action("Index","Home")"><input type="button" value="На главную" class="btn btn-danger" /></a>
+
     </div>
 }
+
+<script>
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
