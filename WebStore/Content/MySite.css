@@ -27,7 +27,7 @@
 .body-content-edit-product {
     margin: 70px;
     width: 940px;
-    height: 450px;
+    height: auto;
 }
 
 .body-content-product {
@@ -90,11 +90,8 @@
     max-width: 400px;
 }
 
-.check{
-    overflow:auto;
-}
-
 .product-accept-btn {
+    clear:both;
     margin-top: 20px;
 }
 
