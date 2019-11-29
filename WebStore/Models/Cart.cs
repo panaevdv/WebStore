@@ -20,12 +20,12 @@ namespace WebStore.Models
                 line.Quantity += quantity;
         }
 
-        public void RemoveLine(ProductPhoto product)
+        public void RemoveLine(ProductModel product)
         {
             cartLines.RemoveAll(p => p.Product.ProductId == product.ProductId);
         }
 
-        public double ComputeValue()
+        public double TotalValue()
         {
             return cartLines.Sum(p => p.Product.Price * p.Quantity);
         }

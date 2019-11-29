@@ -15,6 +15,7 @@
         padding: 12px;
         text-decoration: none;
     }
+
         .category-list a:hover {
             background-color: #ccc;
         }
@@ -32,14 +33,15 @@
 
 .body-content-product {
     margin: 70px;
-    margin-left: 110px;
+    margin-left: 150px;
     width: 940px;
     height: auto;
 }
 
 .product-item {
+    padding: 10px;
     vertical-align: top;
-    height: 300px;
+    height: 400px;
     width: 300px;
     border: 1px solid black;
     display: inline-block;
@@ -84,16 +86,32 @@
     float: right;
 }
 
-.product-image-preview{
+.product-image-preview {
     margin-right: 250px;
     display: inline-block;
     max-width: 400px;
 }
 
 .product-accept-btn {
-    clear:both;
+    clear: both;
     margin-top: 20px;
 }
+
+.cart-add-qnt {
+    display: none;
+    text-align: center;
+}
+
+    .cart-add-qnt button {
+        width: 50px;
+    }
+    .cart-add-qnt span {
+        font-size: 14px;
+        font-weight:200;
+        display: inline-block;
+        width: 35px;
+        border: 1px solid;
+    }
 
 footer {
     clear: both;
