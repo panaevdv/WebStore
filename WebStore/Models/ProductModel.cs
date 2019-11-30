@@ -10,6 +10,7 @@ namespace WebStore.Models
 {
     public class PageInfo
     {
+        public Cart CurrentCart { get; set; }
         public string CurrentCategory { get; set; }
         public int PageNumber { get; set; } 
         public int PageSize { get; set; } 

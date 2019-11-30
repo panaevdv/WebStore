@@ -1,0 +1,27 @@
+﻿@using WebStore.Models
+@model Cart
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div align="center">
+    <table>
+        <tr>
+            <td>Название</td>
+            <td>Цена за шт.</td>
+            <td>Количество</td>
+            <td>Итого</td>
+        </tr>
+        @foreach (CartLine line in Model.Lines)
+        {
+            <tr>
+                <td>@line.Product.Name</td>
+                <td>@line.Product.Price</td>
+                <td>@line.Quantity</td>
+                <td>@(line.Product.Price * line.Quantity)</td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -11,7 +11,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div style="background-color: #e0e0e0; box-shadow: 0 0 5px #000000" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -37,11 +37,16 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
+                <span class="cart-image">
+                    <input onclick="cartHandler()" type="image" src="~/Content/Images/ShoppingCart.png" />
+                    <span onclick="cartHandler()" id="cartQnt" class="cart-header-qnt">1</span>
+                    <span id="cartPrice"></span>
+                </span>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div style="width:1270px;" class="container body-content">
+    <div class="container body-content">
         @RenderBody()
         <footer>
             <p>&copy; @DateTime.Now.Year - WebStore</p>
@@ -49,7 +54,24 @@
     </div>
 
     <script>
+        function cartHandler() {
+            window.location.href = '@Url.Action("Index", "Cart")';
+        }
+    </script>
 
+    <script defer>
+        document.addEventListener('DOMContentLoaded', getState());
+        async function getState() {
+            let url = '@Url.Action("State","Cart")';
+            let response = await fetch(url)
+            let result = await response.json();;
+            if (response.ok) {
+                var qntSpan = document.getElementById("cartQnt");
+                var priceSpan = document.getElementById("cartPrice");
+                qntSpan.innerHTML = result.count;
+                priceSpan.innerHTML = result.value;
+            }
+        }
     </script>
 
     @Scripts.Render("~/bundles/jquery")

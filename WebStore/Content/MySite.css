@@ -113,6 +113,29 @@
         border: 1px solid;
     }
 
+.header-for-cart >li >a{
+    color:black;
+}
+
+.cart-header-qnt {
+    position: absolute;
+    text-align: center;
+    border-radius: 13px;
+    width: 20px;
+    background-color: white;
+    top: -5px;
+    left: 40px;
+}
+
+.cart-image {
+    position:relative;
+    float: right;
+    margin: 0;
+    display: block;
+    margin-block-start: 0.65em;
+    padding-inline-start: 20px;
+}
+
 footer {
     clear: both;
     position: relative;

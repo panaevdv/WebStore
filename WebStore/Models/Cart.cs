@@ -20,6 +20,30 @@ namespace WebStore.Models
                 line.Quantity += quantity;
         }
 
+        public void RemoveItem(ProductModel product, int quantity)
+        {
+            CartLine line = cartLines
+                .Where(p => p.Product.ProductId == product.ProductId)
+                .FirstOrDefault();
+            if (line != null)
+            {
+                if (line.Quantity-quantity >= 1)
+                    line.Quantity -= quantity;
+                else
+                    cartLines.Remove(line);
+            }
+        }
+
+        public int GetTotalItems()
+        {
+            int qnt = 0;
+            foreach(CartLine line in cartLines)
+            {
+                qnt += line.Quantity;
+            }
+            return qnt;
+        }
+
         public void RemoveLine(ProductModel product)
         {
             cartLines.RemoveAll(p => p.Product.ProductId == product.ProductId);
