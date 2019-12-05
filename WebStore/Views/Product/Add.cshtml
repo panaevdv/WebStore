@@ -20,6 +20,8 @@
                 <dd>@Html.TextBoxFor(m => Model.Price)</dd>
                 <dt>Category</dt>
                 <dd>@Html.DropDownListFor(m => Model.Category, ViewBag.Categories as SelectList)</dd>
+                <dt>Count in store</dt>
+                <dd>@Html.TextBoxFor(m=> Model.CountInStore)</dd>
                 <dt>SubCategory</dt>
                 <dd>@Html.TextBoxFor(m => Model.Subcategory)</dd>
                 <dt>Product image</dt>

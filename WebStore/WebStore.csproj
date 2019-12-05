@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201911131746569_MyMigration.Designer.cs">
       <DependentUpon>201911131746569_MyMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912031930280_instore.cs" />
+    <Compile Include="Migrations\201912031930280_instore.Designer.cs">
+      <DependentUpon>201912031930280_instore.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -256,6 +260,7 @@
     <Content Include="Views\Product\Get.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\_PartialCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -276,6 +281,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201911131746569_MyMigration.resx">
       <DependentUpon>201911131746569_MyMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912031930280_instore.resx">
+      <DependentUpon>201912031930280_instore.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -11,6 +11,11 @@ namespace WebStore.Models
 
         public void AddItem(ProductModel product, int quantity)
         {
+            if(quantity<0)
+            {
+                RemoveItem(product, -quantity);
+                return;
+            }
             CartLine line = cartLines
                 .Where(p => p.Product.ProductId == product.ProductId)
                 .FirstOrDefault();

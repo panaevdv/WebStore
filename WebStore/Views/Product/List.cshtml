@@ -75,11 +75,12 @@
     }
 
     async function toCart(id, type) {
-        let url;
+        let url = '@Url.Action("UpdateCart", "Cart")?' + 'id=' + id + '&quantity=';
+        let qntBlock = document.getElementById(id).getElementsByTagName('span')[0];
         if (type == 'add')
-            url = '@Url.Action("AddToCart", "Cart")/' + id;
+            url = url+ (+qntBlock.innerHTML+1);
         else if (type == 'remove')
-            url = '@Url.Action("RemoveFromCart", "Cart")/' + id;
+            url = url+ + (+qntBlock.innerHTML-1);
         else
             alert('Error!');
         let response = await fetch(url, {
@@ -87,15 +88,16 @@
         })
         let result = await response.json();;
         if (response.ok) {
-            let qntBlock = document.getElementById(id).getElementsByTagName('span')[0];
             let qnt = qntBlock.innerHTML;
             if (type == 'add')
                 qntBlock.innerHTML = +qnt + 1;
             if (type == 'remove')
                 if (qnt > 1)
-                qntBlock.innerHTML = qnt - 1;
-                else
+                    qntBlock.innerHTML = qnt - 1;
+                else {
+                    qntBlock.innerHTML = qnt - 1;
                     hideActions(id);
+                }
             await getState();
         }
         else

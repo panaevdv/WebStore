@@ -70,6 +70,10 @@
                 var priceSpan = document.getElementById("cartPrice");
                 qntSpan.innerHTML = result.count;
                 priceSpan.innerHTML = result.value;
+                if (window.location.pathname == '@Url.Action("Index","Cart")') {
+                    document.getElementsByClassName("item-count")[0].innerHTML = result.count;
+                    document.getElementsByClassName("item-value")[0].innerHTML = result.value;
+                }
             }
         }
     </script>

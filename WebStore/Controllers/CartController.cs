@@ -24,38 +24,29 @@ namespace WebStore.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddToCart(int id)
+        public JsonResult UpdateCart(int id, int quantity)
         {
             using(ProductContext db = new ProductContext())
             {
                 var product = db.Products.Find(id);
                 if(product!=null)
                 {
-                    GetCart().AddItem(product, 1);
-                    return Json(new { count = GetCart().GetTotalItems(), value = GetCart().TotalValue() }) ;
+                    var currentLine = GetCart().Lines.Where(p => p.Product.ProductId == product.ProductId).FirstOrDefault();
+                    int qnt = 1;
+                    int totalQnt = 1;
+                    if (currentLine != null)
+                    {
+                        qnt = quantity - currentLine.Quantity;
+                        totalQnt = (currentLine.Quantity + qnt);
+                    }
+                    GetCart().AddItem(product, qnt);
+                    return Json(new { price = (totalQnt * product.Price).ToString("c") });
                 }
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return Json(new { message = "Error! There is no such item in store" });
             }
         }
-
-        [HttpPost]
-        public JsonResult RemoveFromCart(int id)
-        {
-            using (ProductContext db = new ProductContext())
-            {
-                var product = db.Products.Find(id);
-                if (product != null)
-                {
-                    GetCart().RemoveItem(product, 1);
-                    return Json(new { count = GetCart().GetTotalItems(), value = GetCart().TotalValue() });
-                }
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return Json(new { message = "Error! There is no such item in store" });
-            }
-        }
-
-        public JsonResult RemoveLineFromCart(int id)
+        public ActionResult RemoveLineFromCart(int id)
         {
             using (ProductContext db = new ProductContext())
             {
@@ -63,7 +54,7 @@ namespace WebStore.Controllers
                 if (product != null)
                 {
                     GetCart().RemoveLine(product);
-                    return Json(new { count = GetCart().GetTotalItems(), value = GetCart().TotalValue() });
+                    return PartialView("_PartialCart", GetCart());
                 }
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return Json(new { message = "Error! There is no such item in store" });
