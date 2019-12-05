@@ -1,0 +1,21 @@
+﻿@using WebStore.Models
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Net;
+@using System.Web;
+
+@model Cart
+
+@foreach (CartLine line in Model.Lines)
+{
+    <div id="@line.Product.ProductId" class="cart-product @if (Model.Lines.Last()==line) {<text>cart-product-last-child</text>}">
+        <img src="@Url.Action("Image", "Product", new { id = line.Product.ProductId })" />
+        <span class="name">@line.Product.Name</span>
+        <span class="price">@((line.Product.Price * line.Quantity).ToString("c"));</span>
+        <input type="number" min="1" max="@line.Product.CountInStore" value="@line.Quantity"
+               onchange="changeQnt(@line.Product.ProductId)"/>
+        <br />
+        <button onclick="deleteLineHandler(@line.Product.ProductId)" class="btn-sm btn-danger">Удалить</button>
+    </div>
+}
