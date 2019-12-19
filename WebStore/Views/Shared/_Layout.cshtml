@@ -25,8 +25,8 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <div class="dropdown">
-                            <button onclick="dropDown()" class="dropbtn">Каталог</button>
-                            <div id="myDropdown" class="dropdown-content">
+                            <button style="color: black; font-size:14px;" onclick="dropDown()" class="dropbtn">Каталог</button>
+                            <div style="color: black" id="myDropdown" class="dropdown-content">
                                 <a href="@Url.Action("List","Product", new { category = "Электроника" })">Электроника</a>
                                 <a href="@Url.Action("List","Product", new { category = "Одежда" })">Одежда</a>
                                 <a href="@Url.Action("List","Product", new { category = "Книги" })">Книги</a>
@@ -34,8 +34,8 @@
                             </div>
                         </div>
                     </li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home", routeValues: null, htmlAttributes: new { style="color: black"})</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", routeValues: null, htmlAttributes: new { style="color: black"})</li>
                 </ul>
                 <span class="cart-image">
                     <input onclick="cartHandler()" type="image" src="~/Content/Images/ShoppingCart.png" />

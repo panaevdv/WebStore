@@ -11,22 +11,25 @@ namespace WebStore.Controllers
     public class CartController : Controller
     {
         // GET: Cart
+        // List of current items in cart
         public ActionResult Index()
         {
             Cart cart = GetCart();
             return View(cart);
         }
 
+        // Current cart state (Total items and total value)
         public JsonResult State()
         {
             Cart cart = GetCart();
             return Json(new { count = cart.GetTotalItems(), value = cart.TotalValue().ToString("c") }, JsonRequestBehavior.AllowGet);
         }
 
+        // Adding or removing an item to cart
         [HttpPost]
         public JsonResult UpdateCart(int id, int quantity)
         {
-            using(ProductContext db = new ProductContext())
+            using(ApplicationDbContext db = new ApplicationDbContext())
             {
                 var product = db.Products.Find(id);
                 if(product!=null)
@@ -46,9 +49,11 @@ namespace WebStore.Controllers
                 return Json(new { message = "Error! There is no such item in store" });
             }
         }
+
+        // Removing line from cart
         public ActionResult RemoveLineFromCart(int id)
         {
-            using (ProductContext db = new ProductContext())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var product = db.Products.Find(id);
                 if (product != null)
@@ -60,7 +65,7 @@ namespace WebStore.Controllers
                 return Json(new { message = "Error! There is no such item in store" });
             }
         }
-
+        
         private Cart GetCart()
         {
             Cart cart = (Cart)Session["Cart"];

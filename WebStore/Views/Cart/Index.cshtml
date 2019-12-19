@@ -18,13 +18,13 @@
             Общая стоимость:
             <span class="item-value">@Model.TotalValue().ToString("c");</span>
         </p>
-        <button class="btn-lg btn-success">Купить</button>
+        <button onclick="buyHandler()" class="btn-lg btn-success">Купить</button>
     </div>
 </div>
 
 <script>
     function buyHandler() {
-        window.location.href=""
+        window.location.href = '@Url.Action("Add","Purchase")';
     }
 
     function changeQnt(id) {

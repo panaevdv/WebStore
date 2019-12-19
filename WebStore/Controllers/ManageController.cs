@@ -67,6 +67,7 @@ namespace WebStore.Controllers
                 user.Street = model.User.Street;
                 user.House = model.User.House;
                 user.Building = model.User.Building;
+                user.Purchases = new System.Collections.Generic.List<Purchase>();
                 await UserManager.UpdateAsync(user);
                 message = ManageMessageId.ChangePersonalSuccess;
             }

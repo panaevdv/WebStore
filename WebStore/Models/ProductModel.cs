@@ -79,7 +79,7 @@ namespace WebStore.Models
         public virtual ProductModel Product { get; set; }
     }
 
-
+    /*
     public class ProductContext : DbContext
     {
         public ProductContext() : base("DefaultConnection")
@@ -92,7 +92,5 @@ namespace WebStore.Models
             Database.SetInitializer<ProductContext>(null);
             // more code here.
         }
-        public DbSet<ProductPhoto> Photos { get; set; }
-        public DbSet<ProductModel> Products { get; set; }
-    }
+    }*/
 }

@@ -25,6 +25,32 @@
         }
 
 
+table {
+    border-collapse: collapse;
+}
+
+.body-purchases {
+    margin: 70px;
+    width: 940px;
+    height: auto;
+}
+
+.purchase{
+    border: 1px solid #0069fa;
+    padding: 10px;
+    padding-top:0; 
+}
+
+.purchase h3{
+    margin:5px;
+}
+
+.purchase p{
+    font-size: 18px;
+    display: inline;
+    margin-right: 20px;
+}
+
 .body-content-edit-product {
     margin: 70px;
     width: 940px;
