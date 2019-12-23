@@ -46,7 +46,8 @@ namespace WebStore.Controllers
                     };
                     for(int i=0; i<cart.Lines.Count(); i++)
                     {
-                        cart.Lines.ElementAt(i).Purchase = purchase;
+                        cart.Lines.ElementAt(i).Product = null;
+                        cart.Lines.ElementAt(i).PurchaseId = purchase.Id;
                         db.CartLines.Add(cart.Lines.ElementAt(i));
                     }
                     db.Purchases.Add(purchase);

@@ -78,8 +78,6 @@ namespace WebStore.Controllers
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var product = db.Products.Include("Photo").Where(p => p.ProductId == id).FirstOrDefault();
-                /*if (product.Photo != null)
-                    db.Photos.Remove(product.Photo);*/
                 db.Products.Remove(product);
                 db.SaveChanges();
                 return RedirectToAction("List", "Product", new { category = product.Category });

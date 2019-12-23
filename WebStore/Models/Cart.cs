@@ -22,7 +22,7 @@ namespace WebStore.Models
                 .Where(p => p.Product.ProductId == product.ProductId)
                 .FirstOrDefault();
             if (line == null)
-                cartLines.Add(new CartLine { Product = product, Quantity = quantity });
+                cartLines.Add(new CartLine { Product = product, Quantity = quantity, ProductId = product.ProductId });
             else
                 line.Quantity += quantity;
         }
@@ -76,6 +76,7 @@ namespace WebStore.Models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public int ProductId { get; set; }
         public virtual ProductModel Product { get; set; }
         public int Quantity { get; set; }
         public int PurchaseId { get; set; }

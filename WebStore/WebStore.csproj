@@ -208,6 +208,14 @@
     <Compile Include="Migrations\201912181802577_cartline.Designer.cs">
       <DependentUpon>201912181802577_cartline.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912231927448_product_fix.cs" />
+    <Compile Include="Migrations\201912231927448_product_fix.Designer.cs">
+      <DependentUpon>201912231927448_product_fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912231929073_product-fix2.cs" />
+    <Compile Include="Migrations\201912231929073_product-fix2.Designer.cs">
+      <DependentUpon>201912231929073_product-fix2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -322,6 +330,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912181802577_cartline.resx">
       <DependentUpon>201912181802577_cartline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912231927448_product_fix.resx">
+      <DependentUpon>201912231927448_product_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912231929073_product-fix2.resx">
+      <DependentUpon>201912231929073_product-fix2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

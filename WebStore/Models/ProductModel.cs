@@ -67,6 +67,8 @@ namespace WebStore.Models
         public double Price { get; set; }
         public virtual ProductPhoto Photo { get; set; }
 
+        public virtual List<CartLine> Lines { get; set; }
+
     }
 
     public class ProductPhoto
@@ -78,19 +80,4 @@ namespace WebStore.Models
         public byte[] Photo { get; set; }
         public virtual ProductModel Product { get; set; }
     }
-
-    /*
-    public class ProductContext : DbContext
-    {
-        public ProductContext() : base("DefaultConnection")
-        {
-
-        }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            // other code 
-            Database.SetInitializer<ProductContext>(null);
-            // more code here.
-        }
-    }*/
 }
