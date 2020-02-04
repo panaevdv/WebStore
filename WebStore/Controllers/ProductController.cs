@@ -17,6 +17,7 @@ namespace WebStore.Controllers
 
         // GET
         // Editing product
+        [Authorize(Roles ="Admin")]
         public ActionResult Edit(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -35,6 +36,7 @@ namespace WebStore.Controllers
 
         // POST
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(ProductViewModel model, HttpPostedFileBase UploadedPhoto)
         {   
             if (ModelState.IsValid)
@@ -73,6 +75,7 @@ namespace WebStore.Controllers
 
         // GET
         // Deletes product by id
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -148,6 +151,7 @@ namespace WebStore.Controllers
         // POST
         // Adds new Product element to the db 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Add(ProductViewModel m, HttpPostedFileBase Photo)
         {
             if (ModelState.IsValid)
@@ -183,6 +187,7 @@ namespace WebStore.Controllers
 
         // GET
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Add()
         {
             ViewBag.Categories = new SelectList(Categories);

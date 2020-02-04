@@ -57,4 +57,69 @@ namespace WebStore.Models
             return new ApplicationDbContext();
         }
     }
+
+    public class AppDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    {
+        protected override void Seed(ApplicationDbContext context)
+        {
+            var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            var adminRole = new IdentityRole { Name = "Admin" };
+            var userRole = new IdentityRole { Name = "User" };
+            roleManager.Create(adminRole);
+            roleManager.Create(userRole);
+
+            var admin = new ApplicationUser
+            {
+                Email = "dimon@hu2.ru",
+                UserName = "dimon@hu2.ru",
+                FirstName = "Dmitry",
+                LastName = "Panaev",
+                City = "Ufa",
+                Country = "Russia",
+                House = 222,
+                Street = "Odesskaya"
+            };
+            string password = "TestPass123";
+            var result = userManager.Create(admin, password);
+
+            if (result.Succeeded)
+            {
+                userManager.AddToRole(admin.Id, userRole.Name);
+                userManager.AddToRole(admin.Id, adminRole.Name);
+            }
+            for (int i = 0; i < 16; i++)
+            {
+                ProductModel product;
+                if (i < 5)
+                {
+                    product = new ProductModel()
+                    {
+                        Category = "Медицина",
+                        CountInStore = 100,
+                        Description = "None",
+                        Name = "Product" + i,
+                        Price = 100 * i,
+                        Subcategory = "Расходные материалы"
+                    };
+                }
+                else
+                {
+                    product = new ProductModel()
+                    {
+                        Category = "Электроника",
+                        CountInStore = 100,
+                        Description = "None",
+                        Name = "Product" + i,
+                        Price = 5000 * i,
+                        Subcategory = "Телефоны"
+                    };
+                }
+                context.Products.Add(product);
+
+            }
+            base.Seed(context);
+        }
+    }
 }

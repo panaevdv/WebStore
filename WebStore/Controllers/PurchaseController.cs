@@ -19,7 +19,7 @@ namespace WebStore.Controllers
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                var purchases = db.Purchases.Include("Items").Include("Items.Product").OrderByDescending(x=>x.PurchaseTime).ToList();
+                var purchases = db.Purchases.Include("Items").Include("Items.Product").OrderByDescending(x => x.PurchaseTime).ToList();
                 return View(purchases);
             }
         }
@@ -44,8 +44,14 @@ namespace WebStore.Controllers
                         ApplicationUserId = userId,
                         TotalValue = cart.TotalValue()
                     };
-                    for(int i=0; i<cart.Lines.Count(); i++)
+                    for (int i = 0; i < cart.Lines.Count(); i++)
                     {
+                        // Changing in-stock quantity
+                        var product = db.Products.Find(cart.Lines.ElementAt(i).Product.ProductId);
+                        product.CountInStore -= cart.Lines.ElementAt(i).Quantity;
+                        db.Entry(product).State = System.Data.Entity.EntityState.Modified;
+
+                        // Adding products to a new purchase
                         cart.Lines.ElementAt(i).Product = null;
                         cart.Lines.ElementAt(i).PurchaseId = purchase.Id;
                         db.CartLines.Add(cart.Lines.ElementAt(i));
