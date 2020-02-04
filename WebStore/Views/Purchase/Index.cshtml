@@ -1,0 +1,26 @@
+﻿@using WebStore.Models
+@using System.Collections.Generic
+
+@model IEnumerable<Purchase>
+
+
+@{
+    ViewBag.Title = "Мои заказы";
+}
+
+<div class="body-purchases">
+    @foreach (Purchase p in Model)
+    {
+        <div class="purchase">
+            <h3>Заказ от @p.PurchaseTime.ToShortDateString() </h3>
+            @foreach (CartLine line in p.Items)
+            {
+                <div>
+                    <p>@line.Product.Name</p>
+                    <p>@line.Quantity шт.</p>
+                </div>
+            }
+            <p>Итого: @p.TotalValue.ToString("c")</p>
+        </div>
+    }
+</div>

@@ -11,7 +11,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div style="background-color: #e0e0e0; box-shadow: 0 0 5px #000000" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -25,8 +25,8 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <div class="dropdown">
-                            <button onclick="dropDown()" class="dropbtn">Каталог</button>
-                            <div id="myDropdown" class="dropdown-content">
+                            <button style="color: black; font-size:14px;" onclick="dropDown()" class="dropbtn">Каталог</button>
+                            <div style="color: black" id="myDropdown" class="dropdown-content">
                                 <a href="@Url.Action("List","Product", new { category = "Электроника" })">Электроника</a>
                                 <a href="@Url.Action("List","Product", new { category = "Одежда" })">Одежда</a>
                                 <a href="@Url.Action("List","Product", new { category = "Книги" })">Книги</a>
@@ -34,20 +34,49 @@
                             </div>
                         </div>
                     </li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home", routeValues: null, htmlAttributes: new { style="color: black"})</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", routeValues: null, htmlAttributes: new { style="color: black"})</li>
                 </ul>
+                <span class="cart-image">
+                    <input onclick="cartHandler()" type="image" src="~/Content/Images/ShoppingCart.png" />
+                    <span onclick="cartHandler()" id="cartQnt" class="cart-header-qnt">1</span>
+                    <span id="cartPrice"></span>
+                </span>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div style="width:1270px;" class="container body-content">
+    <div class="container body-content">
         @RenderBody()
         <footer>
             <p>&copy; @DateTime.Now.Year - WebStore</p>
         </footer>
     </div>
 
+    <script>
+        function cartHandler() {
+            window.location.href = '@Url.Action("Index", "Cart")';
+        }
+    </script>
+
+    <script defer>
+        document.addEventListener('DOMContentLoaded', getState());
+        async function getState() {
+            let url = '@Url.Action("State","Cart")';
+            let response = await fetch(url)
+            let result = await response.json();;
+            if (response.ok) {
+                var qntSpan = document.getElementById("cartQnt");
+                var priceSpan = document.getElementById("cartPrice");
+                qntSpan.innerHTML = result.count;
+                priceSpan.innerHTML = result.value;
+                if (window.location.pathname == '@Url.Action("Index","Cart")') {
+                    document.getElementsByClassName("item-count")[0].innerHTML = result.count;
+                    document.getElementsByClassName("item-value")[0].innerHTML = result.value;
+                }
+            }
+        }
+    </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

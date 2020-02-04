@@ -15,9 +15,11 @@ namespace WebStore.Controllers
         byte[] defaultPhoto;
         public List<string> Categories = new List<string>() { "Электроника", "Одежда", "Книги", "Медицина" };
 
+        // GET
+        // Editing product
         public ActionResult Edit(int id)
         {
-            using (ProductContext db = new ProductContext())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var product = db.Products.Find(id);
                 // Mapping current ProductModel for ProductViewModel
@@ -31,9 +33,10 @@ namespace WebStore.Controllers
             }
         }
 
+        // POST
         [HttpPost]
         public ActionResult Edit(ProductViewModel model, HttpPostedFileBase UploadedPhoto)
-        {
+        {   
             if (ModelState.IsValid)
             {
                 // Mapping current ProductViewModel for ProductModel
@@ -47,7 +50,7 @@ namespace WebStore.Controllers
 
                 // Processing input photo file to add to DB
 
-                using (ProductContext db = new ProductContext())
+                using (ApplicationDbContext db = new ApplicationDbContext())
                 {
                     if (UploadedPhoto != null && UploadedPhoto.ContentLength != 0)
                     {
@@ -67,39 +70,42 @@ namespace WebStore.Controllers
             }
             return View(model);
         }
+
+        // GET
         // Deletes product by id
         public ActionResult Delete(int id)
         {
-            using (ProductContext db = new ProductContext())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var product = db.Products.Find(id);
-                if (product.Photo != null)
-                    db.Photos.Remove(product.Photo);
+                var product = db.Products.Include("Photo").Where(p => p.ProductId == id).FirstOrDefault();
                 db.Products.Remove(product);
                 db.SaveChanges();
                 return RedirectToAction("List", "Product", new { category = product.Category });
             }
         }
 
+        // GET
         // Returns product by id
         public ViewResult Get(int id)
         {
-            using (ProductContext db = new ProductContext())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var product = db.Products.Find(id);
                 return View(product);
             }
         }
+
+        // GET
         // Returns product's image by id
         public FileContentResult Image(int id)
         {
-            using (ProductContext db = new ProductContext())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var productPhoto = db.Photos.Find(id);
                 byte[] image;
                 string mime = "image/png";
                 // if there is no photo of product, return default photo
-                if (productPhoto.Photo == null)
+                if (productPhoto==null||productPhoto.Photo == null)
                 {
                     if (defaultPhoto == null)
                     {
@@ -116,12 +122,14 @@ namespace WebStore.Controllers
                 return File(image, mime);
             }
         }
+
+        // GET
         // Displays list of elements by category
         public ActionResult List(string category, int page = 1)
         {
             if (!Categories.Contains(category))
                 return HttpNotFound();
-            using (ProductContext db = new ProductContext())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var products = db.Products
                     .Where(p => p.Category == category)
@@ -136,6 +144,8 @@ namespace WebStore.Controllers
                 return View(results);
             }
         }
+
+        // POST
         // Adds new Product element to the db 
         [HttpPost]
         public ActionResult Add(ProductViewModel m, HttpPostedFileBase Photo)
@@ -161,7 +171,7 @@ namespace WebStore.Controllers
                 }
                 item.Photo = productPhoto;
                 // Saving Product in DB
-                using (ProductContext db = new ProductContext())
+                using (ApplicationDbContext db = new ApplicationDbContext())
                 {
                     db.Products.Add(item);
                     db.SaveChanges();
@@ -170,6 +180,8 @@ namespace WebStore.Controllers
             }
             return View(m);
         }
+
+        // GET
         [HttpGet]
         public ActionResult Add()
         {

@@ -19,17 +19,20 @@
                     <dd>@Html.EditorFor(m => Model.Price)</dd>
                     <dt>Category</dt>
                     <dd>@Html.EditorFor(m => Model.Category, ViewBag.Categories as SelectList)</dd>
+                    <dt>Count in store</dt>
+                    <dd>@Html.EditorFor(m => Model.CountInStore)</dd>
                     <dt>SubCategory</dt>
                     <dd>@Html.EditorFor(m => Model.Subcategory)</dd>
                 </dl>
             </div>
             <div class="product-main-info product-image">
-                <img src="@Url.Action("Image","Product", new { id = Model.ProductId})" />
-                <input class="product-edit-form-upload" type="file" name="UploadedPhoto" />
+                <img class="product-image" id="prodImg" src="@Url.Action("Image","Product", new { id = Model.ProductId})" />
+                <input class="product-edit-form-upload" type="file" accept="image/*" name="UploadedPhoto" onchange="loadFile(event)"/>
             </div>
         </div>
     </div>
-    <div align="center" class="product-edit-form-btn">
+    <br clear="all" />
+    <div align="center" class="product-accept-btn">
         <button type="submit"  class="btn btn-success">Изменить</button>
         <button type="button" onclick="handler()" class="btn btn-danger">Вернуться к просмотру</button>
     </div>
@@ -40,4 +43,8 @@
     function handler() {
         window.location.href = '@Url.Action("Get", new { id = Model.ProductId })';
     }
+    var loadFile = function (event) {
+        var prodImg = document.getElementById('prodImg');
+        prodImg.src = URL.createObjectURL(event.target.files[0]);
+    };
 </script>

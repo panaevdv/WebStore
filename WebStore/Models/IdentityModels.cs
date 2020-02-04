@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -30,6 +31,7 @@ namespace WebStore.Models
 
         [Display(Name = "Строение")]
         public string Building { get; set; }
+        public List<Purchase> Purchases { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -41,6 +43,10 @@ namespace WebStore.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<ProductPhoto> Photos { get; set; }
+        public DbSet<ProductModel> Products { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<CartLine> CartLines { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

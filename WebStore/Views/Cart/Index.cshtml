@@ -1,0 +1,80 @@
+﻿@using WebStore.Models
+@model Cart
+
+@{
+    ViewBag.Title = "Корзина";
+}
+    <h1>Корзина</h1>
+    <div align="center" class="cart-body">
+        @Html.Partial("_PartialCart")
+    </div>
+    <div class="cart-final">
+        <span class="final-title">Ваша корзина</span>
+        <p>
+            Количество товаров:
+            <span class="item-count">@Model.GetTotalItems()</span>
+        </p>
+        <p>
+            Общая стоимость:
+            <span class="item-value">@Model.TotalValue().ToString("c");</span>
+        </p>
+        <button onclick="buyHandler()" class="btn-lg btn-success">Купить</button>
+    </div>
+</div>
+
+<script>
+    function buyHandler() {
+        window.location.href = '@Url.Action("Add","Purchase")';
+    }
+
+    function changeQnt(id) {
+        setTimeout(toCart(id), 2000);
+    }
+
+    async function deleteLineHandler(id) {
+        let url = '@Url.Action("RemoveLineFromCart","Cart")/' + id;
+        let response = await fetch(url, {
+            method: 'POST'
+        });
+        let result = await response.text();
+        if (response.ok) {
+            changeItems(result);
+            await getState();
+        }
+    }
+
+    function changeItems(html){
+        var mainDiv = document.getElementsByClassName("cart-body")[0];
+        mainDiv.innerHTML = html;
+    }
+
+    function checkBorders(item) {
+        if (item.value < 1)
+            item.value = 1;
+        if (+item.value > +item.getAttribute('max'))
+            item.value = item.getAttribute('max');
+    }
+
+    async function toCart(id) {
+        let url = '@Url.Action("UpdateCart", "Cart")?id=' + id + '&quantity=';
+        let item = document.getElementById(id).getElementsByTagName("input")[0];
+        let price = document.getElementById(id).getElementsByClassName("price")[0];
+        checkBorders(item);
+        url = url + item.value;
+        let response = await fetch(url, {
+            method: 'POST'
+        })
+        let result = await response.json();
+        if (response.ok) {
+            getState();
+            price.innerHTML = result.price;
+        }
+        else
+            alert(result.message);
+    }
+
+    function deleteProducts() {
+
+
+    }
+</script>

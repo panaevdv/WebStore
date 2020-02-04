@@ -171,9 +171,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,11 +184,45 @@
     <Compile Include="Migrations\201911131746569_MyMigration.Designer.cs">
       <DependentUpon>201911131746569_MyMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912031930280_instore.cs" />
+    <Compile Include="Migrations\201912031930280_instore.Designer.cs">
+      <DependentUpon>201912031930280_instore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912171811293_purch.cs" />
+    <Compile Include="Migrations\201912171811293_purch.Designer.cs">
+      <DependentUpon>201912171811293_purch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912171841493_purch5.cs" />
+    <Compile Include="Migrations\201912171841493_purch5.Designer.cs">
+      <DependentUpon>201912171841493_purch5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912171851065_purch51.cs" />
+    <Compile Include="Migrations\201912171851065_purch51.Designer.cs">
+      <DependentUpon>201912171851065_purch51.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912181555294_items-virt.cs" />
+    <Compile Include="Migrations\201912181555294_items-virt.Designer.cs">
+      <DependentUpon>201912181555294_items-virt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912181802577_cartline.cs" />
+    <Compile Include="Migrations\201912181802577_cartline.Designer.cs">
+      <DependentUpon>201912181802577_cartline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912231927448_product_fix.cs" />
+    <Compile Include="Migrations\201912231927448_product_fix.Designer.cs">
+      <DependentUpon>201912231927448_product_fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912231929073_product-fix2.cs" />
+    <Compile Include="Migrations\201912231929073_product-fix2.Designer.cs">
+      <DependentUpon>201912231929073_product-fix2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="Models\Purchase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -253,6 +289,9 @@
     <Content Include="Views\Product\Add.cshtml" />
     <Content Include="Views\Product\Get.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\_PartialCart.cshtml" />
+    <Content Include="Views\Purchase\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -273,6 +312,30 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201911131746569_MyMigration.resx">
       <DependentUpon>201911131746569_MyMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912031930280_instore.resx">
+      <DependentUpon>201912031930280_instore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912171811293_purch.resx">
+      <DependentUpon>201912171811293_purch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912171841493_purch5.resx">
+      <DependentUpon>201912171841493_purch5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912171851065_purch51.resx">
+      <DependentUpon>201912171851065_purch51.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912181555294_items-virt.resx">
+      <DependentUpon>201912181555294_items-virt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912181802577_cartline.resx">
+      <DependentUpon>201912181802577_cartline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912231927448_product_fix.resx">
+      <DependentUpon>201912231927448_product_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912231929073_product-fix2.resx">
+      <DependentUpon>201912231929073_product-fix2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
