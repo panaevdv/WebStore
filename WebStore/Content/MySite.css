@@ -1,4 +1,10 @@
-﻿img {
+﻿.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+img {
     max-height: 50%;
     max-width: 100%;
 }
@@ -36,9 +42,9 @@ table {
 }
 
 .purchase{
-    border: 1px solid #0069fa;
+    border: 1px solid lightgray;
     padding: 10px;
-    padding-top:0; 
+    margin-bottom: -1px;
 }
 
 .purchase h3{

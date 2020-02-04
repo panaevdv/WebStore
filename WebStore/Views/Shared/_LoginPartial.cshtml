@@ -7,7 +7,7 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style="color: black" })
+            @Html.ActionLink("Профиль", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style="color: black" })
         </li>
         <li>
             @Html.ActionLink("Мои заказы", "Index", "Purchase", routeValues: null, htmlAttributes: new { style="color: black"})

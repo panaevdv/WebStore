@@ -19,7 +19,7 @@ namespace WebStore.Controllers
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                var purchases = db.Purchases.Include("Items").Include("Items.Product").ToList();
+                var purchases = db.Purchases.Include("Items").Include("Items.Product").OrderByDescending(x=>x.PurchaseTime).ToList();
                 return View(purchases);
             }
         }

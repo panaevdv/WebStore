@@ -13,7 +13,6 @@
             <input type="button" class="btn" value="Редактировать" onclick="window.location.href='@Url.Action("Edit","Product", new { id = Model.ProductId })'" />
             <input type="button" class="btn btn-danger" value="Удалить"
                    onclick="if (confirm(`Вы действительно хотите удалить этот продукт?`)) window.location.href = '@Url.Action("Delete","Product", new { id = Model.ProductId })'" />
-            </a>
         </div>
         <div class="product-main-info product-main-text">
             <h2>@Html.DisplayFor(m => Model.Name)</h2>

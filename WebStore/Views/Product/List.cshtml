@@ -7,13 +7,6 @@
     ViewBag.Title = Model.PageInfo.CurrentCategory;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Product</title>
-</head>
 <body>
     <div class="category-list">
 
@@ -60,14 +53,12 @@
             <h3>There are no products yet. Would you like to <a href="@Url.Action("Add","Product")">add</a> one?</h3>
         }
     </div>
-    <br />
     <div align="center">
         <span class="btn-group">
             @Html.PageLinks(Model.PageInfo, x => Url.Action("List", new { category = Model.Products.First().Category, page = x }))
         </span>
     </div>
 </body>
-</html>
 
 <script>
     function handler() {

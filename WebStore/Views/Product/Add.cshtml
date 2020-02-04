@@ -8,7 +8,7 @@
 @using (Html.BeginForm("Add", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary()
-    <div class="">
+    <div class="clearfix">
         <img class="product-image product-image-preview" id="output" />
         <div class="product-main-info">
             <dl class="dl-horizontal">
@@ -29,7 +29,6 @@
             </dl>
         </div>
     </div>
-    <br clear="all" />
     <div align="center" class="product-accept-btn">
         <input type="submit" value="Добавить" class="btn btn-success" />
         <a href="@Url.Action("Index","Home")"><input type="button" value="На главную" class="btn btn-danger" /></a>
